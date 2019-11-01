@@ -21,34 +21,47 @@ namespace ParkSideAPI.Controllers
 
         // GET api/parks
         [HttpGet]
-        public ActionResult<IEnumerable<Park>> Get()
+        public ActionResult<IEnumerable<Park>> Get(string name)
         {
-            
+            var query = _db.Parks.AsQueryable();
+            if (name != null)
+            {
+                query = query.Where(entry => entry.Name.ToLower().Contains(name.ToLower()));
+            }
+            return query.ToList();
         }
 
         // GET api/parks/5
         [HttpGet("{id}")]
-        public ActionResult<string> Get(int id)
+        public ActionResult<Park> Get(int id)
         {
-            return "value";
+            return _db.Parks.FirstOrDefault(entry => entry.ParkId == id);
         }
 
         // POST api/parks
         [HttpPost]
-        public void Post([FromBody] string value)
+        public void Post([FromBody] Park park)
         {
+            _db.Parks.Add(park);
+            _db.SaveChanges();
         }
 
         // PUT api/parks/5
         [HttpPut("{id}")]
-        public void Put(int id, [FromBody] string value)
+        public void Put(int id, [FromBody] Park park)
         {
+            park.ParkId = id;
+            _db.Entry(park).State = Microsoft.EntityFrameworkCore.EntityState.Modified;
+            _db.SaveChanges();
         }
 
         // DELETE api/parks/5
         [HttpDelete("{id}")]
         public void Delete(int id)
         {
+            var parkToDelete = _db.Parks.FirstOrDefault(entry => entry.ParkId == id);
+            _db.Parks.Remove(parkToDelete);
+            _db.SaveChanges();
         }
     }
 }
