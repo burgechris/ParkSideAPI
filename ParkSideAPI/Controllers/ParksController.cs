@@ -36,9 +36,9 @@ namespace ParkSideAPI.Controllers
             {
                 query = query.Where(entry => entry.StateLocation.ToLower().Contains(stateLocation.ToLower()));
             }
-            if (name != null)
+            if (established != 0)
             {
-                query = query.Where(entry => entry.Name.ToLower().Contains(name.ToLower()));
+                query = query.Where(entry => entry.Established == established);
             }
             return query.ToList();
         }
