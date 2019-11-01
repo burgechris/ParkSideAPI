@@ -6,7 +6,7 @@
 
 ## Description
 
-_Database with create, read, and update functionality._
+_Database with create, read, and update functionality. This will be a database of parks between the county and national levels. Current properties include the park name, governing body (state, fed, etc), the year it was established, the coordinates, the area in acres, and it's official website (if available)._
 
 ## Setup/Installation Requirements
 
