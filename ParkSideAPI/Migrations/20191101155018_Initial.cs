@@ -1,0 +1,36 @@
+﻿using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
+
+namespace ParkSideAPI.Migrations
+{
+    public partial class Initial : Migration
+    {
+        protected override void Up(MigrationBuilder migrationBuilder)
+        {
+            migrationBuilder.CreateTable(
+                name: "Parks",
+                columns: table => new
+                {
+                    ParkId = table.Column<int>(nullable: false)
+                        .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
+                    Name = table.Column<string>(nullable: true),
+                    GoverningBody = table.Column<string>(nullable: true),
+                    StateLocation = table.Column<string>(nullable: true),
+                    Established = table.Column<int>(nullable: false),
+                    Coordinates = table.Column<string>(nullable: true),
+                    Area = table.Column<string>(nullable: true),
+                    Website = table.Column<string>(nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Parks", x => x.ParkId);
+                });
+        }
+
+        protected override void Down(MigrationBuilder migrationBuilder)
+        {
+            migrationBuilder.DropTable(
+                name: "Parks");
+        }
+    }
+}
