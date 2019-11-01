@@ -21,9 +21,21 @@ namespace ParkSideAPI.Controllers
 
         // GET api/parks
         [HttpGet]
-        public ActionResult<IEnumerable<Park>> Get(string name)
+        public ActionResult<IEnumerable<Park>> Get(string name, string governingBody, string stateLocation, int established)
         {
             var query = _db.Parks.AsQueryable();
+            if (name != null)
+            {
+                query = query.Where(entry => entry.Name.ToLower().Contains(name.ToLower()));
+            }
+            if (governingBody != null)
+            {
+                query = query.Where(entry => entry.GoverningBody.ToLower().Contains(governingBody.ToLower()));
+            }
+            if (stateLocation != null)
+            {
+                query = query.Where(entry => entry.StateLocation.ToLower().Contains(stateLocation.ToLower()));
+            }
             if (name != null)
             {
                 query = query.Where(entry => entry.Name.ToLower().Contains(name.ToLower()));
