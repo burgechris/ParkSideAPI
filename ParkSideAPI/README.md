@@ -10,9 +10,11 @@ _Database with create, read, and update functionality._
 
 ## Setup/Installation Requirements
 
-*_Open the Terminal_
-* _Clone this repository using this link: _
-
+* _Open the Terminal_
+* _Clone this repository using this link: https://github.com/burgechris/ParkSideAPI.git_
+* _Navigate to project folder_
+* _Open http://localhost:5000/swagger/index.html_
+* _Explore API endpoints_
 
 ## Known Bugs
 
